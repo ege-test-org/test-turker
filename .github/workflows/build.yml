@@ -1,0 +1,16 @@
+name: Build
+
+# Controls when the action will run. Workflow runs on push and pull request events.
+on:
+  # Runs on push events to any branch
+  push:
+    branches: [ '**' ]  # This triggers on all branches
+
+  # Runs on pull request events
+  pull_request:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Successful
+        run: echo "Successful"
