@@ -1,27 +1,47 @@
-# This is a basic workflow that is manually triggered
-
 name: Another Workflow (Runs on Push/Pull)
 
-# Controls when the action will run. Workflow runs on push and pull request events.
 on:
   # Runs on push events to any branch
   push:
-    branches: [ '**' ]  # This triggers on all branches
+    branches: [ '**' ]
 
   # Runs on pull request events
   pull_request:
-  workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+  # Allows manual triggering and accepts optional inputs
+  workflow_dispatch:
+    inputs:
+      HELIOS_TRIGGERED_BY:
+        description: "Optional value for HELIOS_TRIGGERED_BY"
+        required: false
+        default: ""
+      HELIOS_BRANCH_NAME:
+        description: "Optional value for HELIOS_BRANCH_NAME"
+        required: false
+        default: ""
+      HELIOS_ENVIRONMENT_NAME:
+        description: "Optional value for HELIOS_ENVIRONMENT_NAME"
+        required: false
+        default: ""
+      HELIOS_BUILD:
+        description: "Optional value for HELIOS_BUILD"
+        required: false
+        default: ""
+      HELIOS_BUILD_TAG:
+        description: "Optional value for HELIOS_BUILD_TAG"
+        required: false
+        default: ""
+
 jobs:
-  # This workflow contains a single job called "greet"
   greet:
     environment: prod
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Runs a single command using the runners shell
-    - name: Send greeting
-      run: echo "Hello ${{ inputs.name }}"
+      - name: Echo parameters (only if they exist)
+        run: |
+          [ -n "${{ github.event.inputs.HELIOS_TRIGGERED_BY }}" ] && echo "HELIOS_TRIGGERED_BY: ${{ github.event.inputs.HELIOS_TRIGGERED_BY }}"
+          [ -n "${{ github.event.inputs.HELIOS_BRANCH_NAME }}" ] && echo "HELIOS_BRANCH_NAME: ${{ github.event.inputs.HELIOS_BRANCH_NAME }}"
+          [ -n "${{ github.event.inputs.HELIOS_ENVIRONMENT_NAME }}" ] && echo "HELIOS_ENVIRONMENT_NAME: ${{ github.event.inputs.HELIOS_ENVIRONMENT_NAME }}"
+          [ -n "${{ github.event.inputs.HELIOS_BUILD }}" ] && echo "HELIOS_BUILD: ${{ github.event.inputs.HELIOS_BUILD }}"
+          [ -n "${{ github.event.inputs.HELIOS_BUILD_TAG }}" ] && echo "HELIOS_BUILD_TAG: ${{ github.event.inputs.HELIOS_BUILD_TAG }}"
