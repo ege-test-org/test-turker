@@ -1,10 +1,10 @@
 name: Another Workflow (Runs on Push/Pull)
-
+permissions:
+    contents: write   # This is required to create/push the new git tag
 on:
   # Runs on push events to any branch
   push:
-    branches: [ '**' ]
-
+    branches: [ '**' ]  
   # Runs on pull request events
   pull_request:
 
