@@ -19,7 +19,15 @@ on:
         description: "Optional value for HELIOS_BRANCH_NAME"
         required: false
         default: ""
+      HELIOS_BRANCH_HEAD_SHA:
+        description: "Optional value for HELIOS_BRANCH_NAME"
+        required: false
+        default: ""
       HELIOS_ENVIRONMENT_NAME:
+        description: "Optional value for HELIOS_ENVIRONMENT_NAME"
+        required: false
+        default: ""
+      HELIOS_RAW_URL:
         description: "Optional value for HELIOS_ENVIRONMENT_NAME"
         required: false
         default: ""
@@ -28,6 +36,10 @@ on:
         required: false
         default: ""
       HELIOS_BUILD_TAG:
+        description: "Optional value for HELIOS_BUILD_TAG"
+        required: false
+        default: ""
+      HELIOS_PR_NUMBER:
         description: "Optional value for HELIOS_BUILD_TAG"
         required: false
         default: ""
@@ -40,8 +52,11 @@ jobs:
     steps:
       - name: Echo parameters (only if they exist)
         run: |
-          [ -n "${{ github.event.inputs.HELIOS_TRIGGERED_BY }}" ] && echo "HELIOS_TRIGGERED_BY: ${{ github.event.inputs.HELIOS_TRIGGERED_BY }}"
-          [ -n "${{ github.event.inputs.HELIOS_BRANCH_NAME }}" ] && echo "HELIOS_BRANCH_NAME: ${{ github.event.inputs.HELIOS_BRANCH_NAME }}"
-          [ -n "${{ github.event.inputs.HELIOS_ENVIRONMENT_NAME }}" ] && echo "HELIOS_ENVIRONMENT_NAME: ${{ github.event.inputs.HELIOS_ENVIRONMENT_NAME }}"
-          [ -n "${{ github.event.inputs.HELIOS_BUILD }}" ] && echo "HELIOS_BUILD: ${{ github.event.inputs.HELIOS_BUILD }}"
-          [ -n "${{ github.event.inputs.HELIOS_BUILD_TAG }}" ] && echo "HELIOS_BUILD_TAG: ${{ github.event.inputs.HELIOS_BUILD_TAG }}"
+          [[ -n "${{ github.event.inputs.HELIOS_TRIGGERED_BY }}" ]] && echo "HELIOS_TRIGGERED_BY: ${{ github.event.inputs.HELIOS_TRIGGERED_BY }}"
+          [[ -n "${{ github.event.inputs.HELIOS_BRANCH_NAME }}" ]] && echo "HELIOS_BRANCH_NAME: ${{ github.event.inputs.HELIOS_BRANCH_NAME }}"
+          [[ -n "${{ github.event.inputs.HELIOS_BRANCH_HEAD_SHA }}" ]] && echo "HELIOS_BRANCH_HEAD_SHA: ${{ github.event.inputs.HELIOS_BRANCH_HEAD_SHA }}"
+          [[ -n "${{ github.event.inputs.HELIOS_ENVIRONMENT_NAME }}" ]] && echo "HELIOS_ENVIRONMENT_NAME: ${{ github.event.inputs.HELIOS_ENVIRONMENT_NAME }}"
+          [[ -n "${{ github.event.inputs.HELIOS_RAW_URL }}" ]] && echo "HELIOS_RAW_URL: ${{ github.event.inputs.HELIOS_RAW_URL }}"
+          [[ -n "${{ github.event.inputs.HELIOS_BUILD }}" ]] && echo "HELIOS_BUILD: ${{ github.event.inputs.HELIOS_BUILD }}"
+          [[ -n "${{ github.event.inputs.HELIOS_BUILD_TAG }}" ]] && echo "HELIOS_BUILD_TAG: ${{ github.event.inputs.HELIOS_BUILD_TAG }}"
+          [[ -n "${{ github.event.inputs.HELIOS_PR_NUMBER }}" ]] && echo "HELIOS_PR_NUMBER: ${{ github.event.inputs.HELIOS_PR_NUMBER }}"
