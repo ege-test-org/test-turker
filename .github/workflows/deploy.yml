@@ -47,7 +47,7 @@ jobs:
       if: failure()
       run: echo "failure_reason=Build failed at Step 1" >> $GITHUB_ENV
   deploy:
-    environment: dev
+    environment: ${{ github.event.inputs.HELIOS_ENVIRONMENT_NAME }}
     needs: conditional_build_job
     runs-on: ubuntu-latest
     steps:
