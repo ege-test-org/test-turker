@@ -26,6 +26,11 @@ jobs:
     - name: Set Failure Details
       if: failure()
       run: echo "failure_reason=Build failed at Step 1" >> $GITHUB_ENV
+    - name: Force failure for testing
+      if: ${{ always() }}  # Runs even if previous steps failed
+      run: |
+        echo "❌ Intentionally failing conditional build job"
+        exit 1  # Non-zero exit code fails the step
   deploy:
     environment: ${{ github.event.inputs.environment_name }}
     needs: conditional_build_job
