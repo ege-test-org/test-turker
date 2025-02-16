@@ -40,8 +40,8 @@ jobs:
       run: echo "Hello"
     - name: Sleep for 15 seconds  # Added sleep step
       run: sleep 60s  
-    - name: Force failure for testing
-      if: ${{ always() }}  # Runs even if previous steps failed
-      run: |
-        echo "❌ Intentionally failing conditional build job"
-        exit 1  # Non-zero exit code fails the step
+    # - name: Force failure for testing
+    #   if: ${{ always() }}  # Runs even if previous steps failed
+    #   run: |
+    #     echo "❌ Intentionally failing conditional build job"
+    #     exit 1  # Non-zero exit code fails the step
