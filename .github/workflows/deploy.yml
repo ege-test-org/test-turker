@@ -16,6 +16,10 @@ on:
         description: "Username that triggered deployment (not required, shown if triggered via GitHub UI, logged if triggered via GitHub app)"
         required: false
         type: string
+      commit_sha:
+        description: "Commit bla bla"
+        required: false
+        type: string
 
 jobs:
   conditional_build_job:
