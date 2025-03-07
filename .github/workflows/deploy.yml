@@ -30,8 +30,8 @@ jobs:
     - name: Set Failure Details
       if: failure()
       run: echo "failure_reason=Build failed at Step 1" >> $GITHUB_ENV
-    - name: Sleep for 15 seconds  # Added sleep step
-      run: sleep 15s  
+    # - name: Sleep for 15 seconds  # Added sleep step
+    #   run: sleep 15s  
     - name: Force failure for testing
       if: ${{ always() }}  # Runs even if previous steps failed
       run: |
