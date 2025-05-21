@@ -37,6 +37,7 @@ jobs:
     #   run: |
     #     echo "❌ Intentionally failing conditional build job"
     #     exit 1  # Non-zero exit code fails the step
+    
   deploy:
     environment: ${{ github.event.inputs.environment_name }}
     needs: conditional_build_job
