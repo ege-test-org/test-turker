@@ -45,7 +45,7 @@ jobs:
     - name: Send greeting
       run: echo "Hello"
     - name: Sleep for 15 seconds  # Added sleep step
-      run: sleep 15s  
+      run: sleep 100s  
     # - name: Force failure for testing
     #   if: ${{ always() }}  # Runs even if previous steps failed
     #   run: |
