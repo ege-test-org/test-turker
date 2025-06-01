@@ -20,6 +20,10 @@ on:
         description: "Commit bla bla"
         required: false
         type: string
+      test:
+        description: "test input"
+        required: true
+        type: string
 
 jobs:
   conditional_build_job:
